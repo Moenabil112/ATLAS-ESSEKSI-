@@ -1,16 +1,14 @@
 import Section from "../Layout/Section";
 import Timeline from "../UI/Timeline";
-import { processSteps } from "../../data/transactionData";
+import { useTranslation } from "../../i18n/LanguageContext";
 
 export default function MeetingPath() {
+  const { t } = useTranslation();
+  const { eyebrow, title, intro, steps } = t.process;
+
   return (
-    <Section
-      id="process"
-      eyebrow="Section 08"
-      title="Meeting Path"
-      intro="A controlled, sequential process from first contact to Tranche 1 closing."
-    >
-      <Timeline steps={processSteps} />
+    <Section id="process" eyebrow={eyebrow} title={title} intro={intro}>
+      <Timeline steps={steps} />
     </Section>
   );
 }

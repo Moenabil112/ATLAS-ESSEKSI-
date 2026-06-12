@@ -1,22 +1,19 @@
 import { useState } from "react";
 import Section from "../Layout/Section";
-import { tranches } from "../../data/transactionData";
+import { useTranslation } from "../../i18n/LanguageContext";
 
 export default function TranchePlan() {
+  const { t } = useTranslation();
   const [active, setActive] = useState(0);
-  const tranche = tranches[active];
+  const { eyebrow, title, intro, items, total } = t.tranches;
+  const tranche = items[active];
 
   return (
-    <Section
-      id="tranches"
-      eyebrow="Section 03"
-      title="Three-Tranche Capital Plan"
-      intro="USD 3.6M deployed through a staged, condition-based payment protocol with progressive equity recognition."
-    >
+    <Section id="tranches" eyebrow={eyebrow} title={title} intro={intro}>
       {/* Stepper */}
-      <div className="flex items-center" role="tablist" aria-label="Tranche selection">
-        {tranches.map((t, i) => (
-          <div key={t.name} className="flex flex-1 items-center last:flex-none">
+      <div className="flex items-center" role="tablist" aria-label={t.tranches.stepperAria}>
+        {items.map((item, i) => (
+          <div key={item.name} className="flex flex-1 items-center last:flex-none">
             <button
               type="button"
               role="tab"
@@ -34,16 +31,14 @@ export default function TranchePlan() {
                 {i + 1}
               </span>
               <span
-                className={`font-heading text-[10px] font-semibold uppercase tracking-[0.14em] transition-colors duration-200 ${
+                className={`whitespace-nowrap font-heading text-[10px] font-semibold uppercase tracking-[0.14em] transition-colors duration-200 ${
                   active === i ? "text-forge-glow" : "text-ash-white/55"
                 }`}
               >
-                {t.name}
+                {item.name}
               </span>
             </button>
-            {i < tranches.length - 1 && (
-              <div className="mx-3 mb-6 h-px flex-1 bg-copper-fire/35" />
-            )}
+            {i < items.length - 1 && <div className="mx-3 mb-6 h-px flex-1 bg-copper-fire/35" />}
           </div>
         ))}
       </div>
@@ -55,15 +50,18 @@ export default function TranchePlan() {
             {tranche.name} — <span className="text-forge-glow">{tranche.amount}</span>
           </h3>
           <p className="font-subheading text-lg italic text-ash-white/75">
-            Equity recognized: {tranche.equity}
-            <span className="text-ash-white/50"> · Cumulative {tranche.cumulativeEquity}</span>
+            {t.tranches.equityLabel}: {tranche.equity}
+            <span className="text-ash-white/50">
+              {" "}
+              · {t.tranches.cumulativeLabel} {tranche.cumulativeEquity}
+            </span>
           </p>
         </div>
         <div className="copper-rule mt-5" />
         <div className="mt-6 grid gap-8 md:grid-cols-2">
           <div>
             <h4 className="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-copper-fire">
-              Purpose
+              {t.tranches.purposeLabel}
             </h4>
             <ul className="mt-4 space-y-2.5">
               {tranche.purpose.map((item) => (
@@ -76,14 +74,14 @@ export default function TranchePlan() {
           </div>
           <div>
             <h4 className="font-heading text-[11px] font-bold uppercase tracking-[0.2em] text-copper-fire">
-              Release Conditions
+              {t.tranches.conditionsLabel}
             </h4>
             <ul className="mt-4 space-y-2.5">
               {tranche.releaseConditions.map((item) => (
                 <li key={item} className="flex gap-3 font-body text-sm text-ash-white/80">
                   <span
                     aria-hidden="true"
-                    className="mt-1 shrink-0 font-heading text-xs text-forge-glow"
+                    className="mt-1 shrink-0 font-heading text-xs text-forge-glow rtl:-scale-x-100"
                   >
                     ▸
                   </span>
@@ -96,9 +94,15 @@ export default function TranchePlan() {
       </div>
 
       <p className="mt-6 text-center font-subheading text-xl italic text-ash-white/85">
-        Total: <span className="not-italic font-heading text-lg font-bold text-forge-glow">USD 3.6M</span>{" "}
-        → <span className="not-italic font-heading text-lg font-bold text-forge-glow">10%</span>{" "}
-        recognized after full payment
+        {total.label}{" "}
+        <span className="not-italic font-heading text-lg font-bold text-forge-glow">
+          {total.amount}
+        </span>{" "}
+        {total.arrow}{" "}
+        <span className="not-italic font-heading text-lg font-bold text-forge-glow">
+          {total.result}
+        </span>{" "}
+        {total.suffix}
       </p>
     </Section>
   );

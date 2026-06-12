@@ -1,4 +1,4 @@
-import type { ProcessStep } from "../../data/transactionData";
+import type { ProcessStep } from "../../i18n/translations";
 
 interface TimelineProps {
   steps: ProcessStep[];

@@ -25,19 +25,37 @@ npm run preview  # serve the production build
 ## Structure
 
 ```
+public/
+  brand/atlas-isseksi-logo.svg   Standalone logo asset (mark + wordmark)
 src/
   App.tsx                  Page assembly (11 sections + header/footer)
-  index.css                Design tokens, panels, buttons, copper rules
-  data/transactionData.ts  All transaction content as typed data arrays
+  index.css                Design tokens, panels, buttons, copper rules, RTL typography
+  i18n/
+    translations.ts        All UI content in EN / FR / AR as one typed object
+    LanguageContext.tsx    LanguageProvider + useTranslation hook
   hooks/                   useInView, useCountUp (scroll-triggered animation)
   components/
-    Layout/                Header (sticky nav, active section), Section wrapper
-    Brand/AtlasMark.tsx    Abstract SVG mark (mountain ridge + circuit nodes)
+    Layout/                Header (sticky nav, active section), Section wrapper,
+                           LanguageSwitcher (EN / FR / AR)
+    Brand/                 AtlasMark (brand mark SVG), Logo (mark + wordmark lockup)
     UI/                    StatCard, InfoCard, ProgressBar, MatrixTable, Timeline, Accordion
     Sections/              Hero, TransactionSnapshot, WhyLayerExists, TranchePlan,
                            UseOfFunds, SponsorProtection, GovernanceMonitoring,
                            ReservedMatters, MeetingPath, DocumentCenter, FinalStatement
 ```
+
+## Languages
+
+The interface is trilingual: **English (default), French, Arabic**.
+
+- The switcher in the header sets `document.documentElement.lang` / `dir` and
+  persists the choice in `localStorage` (`atlas-lang`); an inline script in
+  `index.html` restores the direction before first paint.
+- Arabic activates RTL layout and swaps to Arabic-capable fonts
+  (**Cairo** for headings, **Tajawal** for body) with letter-spacing reset.
+- To edit or add copy, change the corresponding key in
+  `src/i18n/translations.ts` — every language must satisfy the
+  `TranslationSet` interface, so missing keys fail the type-check.
 
 ## Design system
 

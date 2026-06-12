@@ -1,16 +1,14 @@
 import Section from "../Layout/Section";
-import { snapshotRows } from "../../data/transactionData";
+import { useTranslation } from "../../i18n/LanguageContext";
 
 export default function TransactionSnapshot() {
+  const { t } = useTranslation();
+  const { eyebrow, title, intro, rows } = t.snapshot;
+
   return (
-    <Section
-      id="structure"
-      eyebrow="Section 01"
-      title="Transaction Snapshot"
-      intro="The closed capital architecture, stated in transaction terms."
-    >
+    <Section id="structure" eyebrow={eyebrow} title={title} intro={intro}>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {snapshotRows.map((row) => (
+        {rows.map((row) => (
           <div
             key={row.field}
             className="panel px-5 py-4 transition-colors duration-200 hover:border-forge-glow/40"

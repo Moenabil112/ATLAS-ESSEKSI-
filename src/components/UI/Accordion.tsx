@@ -29,7 +29,7 @@ export default function Accordion({ items }: AccordionProps) {
               type="button"
               aria-expanded={open}
               onClick={() => setOpenId(open ? null : item.id)}
-              className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+              className="flex w-full items-center justify-between gap-4 px-5 py-4 text-start"
             >
               <span className="font-heading text-xs font-semibold tracking-wide text-ash-white">
                 {item.heading}

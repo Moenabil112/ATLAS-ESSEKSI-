@@ -1,27 +1,26 @@
-import type { GovernanceRow } from "../../data/transactionData";
+import type { GovernanceRow } from "../../i18n/translations";
 
 interface MatrixTableProps {
+  headers: { area: string; partner: string; sponsor: string; status: string };
   rows: GovernanceRow[];
 }
 
-export default function MatrixTable({ rows }: MatrixTableProps) {
+export default function MatrixTable({ headers, rows }: MatrixTableProps) {
+  const headerCells = [headers.area, headers.partner, headers.sponsor, headers.status];
+
   return (
     <div className="panel overflow-x-auto">
-      <table className="w-full min-w-[640px] border-collapse text-left">
+      <table className="w-full min-w-[640px] border-collapse">
         <thead>
           <tr className="border-b border-copper-fire/25">
-            <th className="px-5 py-4 font-heading text-[11px] font-bold uppercase tracking-[0.16em] text-forge-glow">
-              Governance Area
-            </th>
-            <th className="px-5 py-4 font-heading text-[11px] font-bold uppercase tracking-[0.16em] text-forge-glow">
-              Financial Partner
-            </th>
-            <th className="px-5 py-4 font-heading text-[11px] font-bold uppercase tracking-[0.16em] text-forge-glow">
-              ProjectCo / Sponsor
-            </th>
-            <th className="px-5 py-4 font-heading text-[11px] font-bold uppercase tracking-[0.16em] text-forge-glow">
-              Protected Status
-            </th>
+            {headerCells.map((label) => (
+              <th
+                key={label}
+                className="px-5 py-4 text-start font-heading text-[11px] font-bold uppercase tracking-[0.16em] text-forge-glow"
+              >
+                {label}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
@@ -32,12 +31,16 @@ export default function MatrixTable({ rows }: MatrixTableProps) {
                 row.protectedRow ? "bg-atlas-stone/15" : ""
               }`}
             >
-              <td className="px-5 py-4 font-heading text-xs font-semibold tracking-wide text-ash-white">
+              <td className="px-5 py-4 text-start font-heading text-xs font-semibold tracking-wide text-ash-white">
                 {row.area}
               </td>
-              <td className="px-5 py-4 font-body text-sm text-ash-white/75">{row.partner}</td>
-              <td className="px-5 py-4 font-body text-sm text-ash-white/75">{row.sponsor}</td>
-              <td className="px-5 py-4">
+              <td className="px-5 py-4 text-start font-body text-sm text-ash-white/75">
+                {row.partner}
+              </td>
+              <td className="px-5 py-4 text-start font-body text-sm text-ash-white/75">
+                {row.sponsor}
+              </td>
+              <td className="px-5 py-4 text-start">
                 <span
                   className={`font-body text-sm ${
                     row.protectedRow ? "font-medium text-forge-glow" : "text-ash-white/65"

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 160" fill="none" role="img" aria-label="ATLAS ISSEKSI — Copper Ecosystem">
+  <!-- Brand mark: copper mountain geometry with circuit nodes -->
+  <g stroke="#D4924A" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" transform="translate(10 30)">
+    <path d="M53 8 L75 30 L53 52 L31 30 Z"/>
+    <circle cx="53" cy="30" r="5" stroke-width="5"/>
+    <path d="M38 45 L8 86 H24"/>
+    <circle cx="33" cy="86" r="5" stroke-width="5"/>
+    <path d="M46 59 L37 71"/>
+    <circle cx="33" cy="78" r="5" stroke-width="5"/>
+    <path d="M60 62 L46 86 H74 Z"/>
+    <path d="M80 60 L101 32 L134 86 H116"/>
+    <circle cx="107" cy="86" r="5" stroke-width="5"/>
+    <path d="M101 50 V66"/>
+    <circle cx="101" cy="74" r="5" stroke-width="5"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="180" y="84" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="42" letter-spacing="6" fill="#F0EDE8">ATLAS ISSEKSI</text>
+  <text x="183" y="120" font-family="Montserrat, Arial, sans-serif" font-weight="600" font-size="20" letter-spacing="10" fill="#B87333">COPPER ECOSYSTEM</text>
+</svg>

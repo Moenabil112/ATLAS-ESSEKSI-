@@ -34,6 +34,35 @@ section[id] {
   scroll-margin-top: 5.5rem;
 }
 
+/* Arabic (RTL) typography: swap to Arabic-capable families, drop Latin
+   letter-spacing and italics, which degrade Arabic script. */
+[dir="rtl"] body,
+[dir="rtl"] .font-body {
+  font-family: "Tajawal", "Cairo", "Raleway", Inter, sans-serif;
+}
+
+[dir="rtl"] .font-heading {
+  font-family: "Cairo", "Tajawal", "Montserrat", Arial, sans-serif;
+}
+
+[dir="rtl"] .font-subheading {
+  font-family: "Cairo", "Tajawal", "Cormorant Garamond", Georgia, serif;
+}
+
+[dir="rtl"] * {
+  letter-spacing: 0;
+}
+
+[dir="rtl"] .italic,
+[dir="rtl"] .font-subheading {
+  font-style: normal;
+}
+
+/* The brand wordmark stays Latin in every language — keep its tracking. */
+[dir="rtl"] .brand-latin {
+  letter-spacing: 0.22em;
+}
+
 @layer components {
   /* Verde panel card with thin copper border — the base surface of the console */
   .panel {
@@ -55,6 +84,12 @@ section[id] {
     letter-spacing: 0.32em;
     text-transform: uppercase;
     color: var(--color-forge-glow);
+  }
+
+  [dir="rtl"] .eyebrow {
+    font-family: "Cairo", "Tajawal", sans-serif;
+    letter-spacing: 0;
+    font-size: 0.8125rem;
   }
 
   .copper-rule {

@@ -1,21 +1,18 @@
-import AtlasMark from "../Brand/AtlasMark";
+import Logo from "../Brand/Logo";
 import StatCard from "../UI/StatCard";
-import { heroStats, heroText } from "../../data/transactionData";
-
-const heroActions = [
-  { label: "View Structure", href: "#structure" },
-  { label: "Review Tranches", href: "#tranches" },
-  { label: "Governance Rights", href: "#governance" },
-  { label: "Document Center", href: "#documents" },
-];
+import { useTranslation } from "../../i18n/LanguageContext";
 
 export default function Hero() {
+  const { t, dir } = useTranslation();
+
   return (
     <section id="top" className="relative overflow-hidden px-6 pb-16 pt-32 sm:px-10 md:pt-40">
       {/* Geometric copper line motif */}
       <svg
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.16]"
+        className={`pointer-events-none absolute inset-0 h-full w-full opacity-[0.16] ${
+          dir === "rtl" ? "-scale-x-100" : ""
+        }`}
         preserveAspectRatio="none"
         viewBox="0 0 1200 600"
         fill="none"
@@ -29,26 +26,25 @@ export default function Hero() {
       </svg>
 
       <div className="relative mx-auto max-w-6xl">
-        <AtlasMark className="h-16 w-16" />
-        <p className="eyebrow mt-8">Confidential Transaction Window</p>
+        <Logo size="lg" />
+        <p className="eyebrow mt-8">{t.hero.eyebrow}</p>
         <h1 className="mt-4 font-heading text-3xl font-extrabold leading-tight tracking-tight text-ash-white sm:text-5xl">
-          ATLAS Isseksi ProjectCo
+          {t.hero.title}
           <span className="mt-2 block text-xl font-bold text-forge-glow sm:text-3xl">
-            Moroccan Financial Partner Entry Window
+            {t.hero.subtitle}
           </span>
         </h1>
         <p className="mt-5 font-subheading text-xl italic text-ash-white/80 sm:text-2xl">
-          Capital Increase into ProjectCo&ensp;|&ensp;USD 3.6M&ensp;|&ensp;10% Minority
-          Entry&ensp;|&ensp;3 Tranches
+          {t.hero.tagline}
         </p>
         <p className="mt-6 max-w-3xl font-body text-base leading-relaxed text-ash-white/75">
-          {heroText}
+          {t.hero.text}
         </p>
 
         <div className="mt-10 flex flex-wrap gap-3">
-          {heroActions.map((action, i) => (
+          {t.hero.actions.map((action, i) => (
             <a
-              key={action.label}
+              key={action.href}
               href={action.href}
               className={i === 0 ? "btn-copper" : "btn-ghost"}
             >
@@ -58,7 +54,7 @@ export default function Hero() {
         </div>
 
         <div className="mt-14 grid grid-cols-2 gap-4 lg:grid-cols-4">
-          {heroStats.map((stat) => (
+          {t.hero.stats.map((stat) => (
             <StatCard key={stat.label} {...stat} />
           ))}
         </div>
