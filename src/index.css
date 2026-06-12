@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  --color-deep-earth: #1a1a0e;
+  --color-verde-tech: #2e4a3e;
+  --color-atlas-stone: #4a3728;
+  --color-copper-fire: #b87333;
+  --color-forge-glow: #d4924a;
+  --color-ash-white: #f0ede8;
+
+  --font-heading: "Montserrat", Arial, sans-serif;
+  --font-subheading: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Raleway", Inter, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--color-deep-earth);
+  color: var(--color-ash-white);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+@layer components {
+  /* Verde panel card with thin copper border — the base surface of the console */
+  .panel {
+    background-color: rgba(46, 74, 62, 0.22);
+    border: 1px solid rgba(184, 115, 51, 0.24);
+    border-radius: 0.375rem;
+  }
+
+  .panel-stone {
+    background-color: rgba(74, 55, 40, 0.22);
+    border: 1px solid rgba(184, 115, 51, 0.2);
+    border-radius: 0.375rem;
+  }
+
+  .eyebrow {
+    font-family: var(--font-heading);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--color-forge-glow);
+  }
+
+  .copper-rule {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      rgba(184, 115, 51, 0.65),
+      rgba(184, 115, 51, 0.12) 60%,
+      transparent
+    );
+  }
+
+  .btn-copper {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.4rem;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(184, 115, 51, 0.55);
+    color: var(--color-ash-white);
+    background-color: rgba(184, 115, 51, 0.14);
+    transition:
+      background-color 200ms ease,
+      border-color 200ms ease,
+      color 200ms ease;
+  }
+
+  .btn-copper:hover {
+    background-color: rgba(212, 146, 74, 0.24);
+    border-color: var(--color-forge-glow);
+  }
+
+  .btn-ghost {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.4rem;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(240, 237, 232, 0.22);
+    color: rgba(240, 237, 232, 0.78);
+    background-color: transparent;
+    transition:
+      border-color 200ms ease,
+      color 200ms ease;
+  }
+
+  .btn-ghost:hover {
+    border-color: rgba(212, 146, 74, 0.6);
+    color: var(--color-ash-white);
+  }
+}
