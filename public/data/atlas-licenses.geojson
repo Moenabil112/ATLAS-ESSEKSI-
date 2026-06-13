@@ -1,0 +1,257 @@
+{
+  "type": "FeatureCollection",
+  "name": "atlas-isseksi-license-portfolio",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "licenseId": "PR3538744",
+        "siteName": "PR3538744",
+        "licenseType": "Research Permit / Portfolio License",
+        "role": "Parent / Portfolio License",
+        "status": "Portfolio Evidence",
+        "accessLevel": "Controlled",
+        "sourceFile": "Permis ATLAS Mining.kml",
+        "relatedAnchor": "LE 353294"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6.279536133457487,
+              32.18731807945495
+            ],
+            [
+              -6.237112270598396,
+              32.18761482450304
+            ],
+            [
+              -6.237452735908953,
+              32.22369203337027
+            ],
+            [
+              -6.279893850616793,
+              32.22339516632771
+            ],
+            [
+              -6.279536133457487,
+              32.18731807945495
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "licenseId": "PR3538903",
+        "siteName": "PR3538903",
+        "licenseType": "Research Permit / Portfolio License",
+        "role": "Portfolio License",
+        "status": "Portfolio Evidence",
+        "accessLevel": "Controlled",
+        "sourceFile": "Permis ATLAS Mining.kml"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6.191361085222119,
+              32.31797609081659
+            ],
+            [
+              -6.19103901646596,
+              32.28189822372609
+            ],
+            [
+              -6.148569620922094,
+              32.28216437011302
+            ],
+            [
+              -6.14887440054207,
+              32.31824234640597
+            ],
+            [
+              -6.191361085222119,
+              32.31797609081659
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "licenseId": "PR3538743",
+        "siteName": "PR3538743",
+        "licenseType": "Research Permit / Portfolio License",
+        "role": "Portfolio License",
+        "status": "Portfolio Evidence",
+        "accessLevel": "Controlled",
+        "sourceFile": "Permis ATLAS Mining.kml"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -5.819434313899956,
+              32.58845961973142
+            ],
+            [
+              -5.819263085220161,
+              32.5523800167967
+            ],
+            [
+              -5.776662908379753,
+              32.55251761366937
+            ],
+            [
+              -5.776816740566855,
+              32.58859727257362
+            ],
+            [
+              -5.819434313899956,
+              32.58845961973142
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "licenseId": "PR3538745",
+        "siteName": "PR3538745",
+        "licenseType": "Research Permit / Portfolio License",
+        "role": "Portfolio License",
+        "status": "Portfolio Evidence",
+        "accessLevel": "Controlled",
+        "sourceFile": "Permis ATLAS Mining.kml"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -5.888132119327883,
+              32.15753016518386
+            ],
+            [
+              -5.887933807409292,
+              32.12145262682752
+            ],
+            [
+              -5.84554043520985,
+              32.12161399761771
+            ],
+            [
+              -5.845721519256976,
+              32.15769160214629
+            ],
+            [
+              -5.888132119327883,
+              32.15753016518386
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "licenseId": "PR3538746",
+        "siteName": "PR3538746",
+        "licenseType": "Research Permit / Portfolio License",
+        "role": "Portfolio License",
+        "status": "Portfolio Evidence",
+        "accessLevel": "Controlled",
+        "sourceFile": "Permis ATLAS Mining.kml"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6.059505783274812,
+              33.06262203556887
+            ],
+            [
+              -6.059235112792719,
+              33.02654304784126
+            ],
+            [
+              -6.016405632047921,
+              33.02676356123233
+            ],
+            [
+              -6.016658718613757,
+              33.06284263830713
+            ],
+            [
+              -6.059505783274812,
+              33.06262203556887
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "licenseId": "LE 353294",
+        "siteName": "Isseksi",
+        "licenseType": "Exploitation License",
+        "parentPermit": "PR3538744",
+        "role": "Production Anchor",
+        "status": "Controlled Evidence",
+        "areaKm2": 15.36,
+        "validFrom": "2024-10-03",
+        "validTo": "2034-10-02",
+        "company": "SOUDAN IMPORT-EXPORT",
+        "pdfUrl": "/licenses/isseksi-exploitation-license.pdf",
+        "accessLevel": "Controlled",
+        "sourceFile": "Atlas Isseksi licence.pdf",
+        "sourceCRS": "Assumed EPSG:26191 / Merchich Nord Maroc",
+        "notes": "Approximate WGS84 conversion for controlled interactive evidence display; GIS review recommended."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -6.279894,
+              32.223395
+            ],
+            [
+              -6.237453,
+              32.223692
+            ],
+            [
+              -6.23718,
+              32.194822
+            ],
+            [
+              -6.245655,
+              32.194764
+            ],
+            [
+              -6.245586,
+              32.187557
+            ],
+            [
+              -6.279536,
+              32.187318
+            ],
+            [
+              -6.279894,
+              32.223395
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

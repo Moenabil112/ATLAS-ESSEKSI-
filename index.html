@@ -8,7 +8,7 @@
       name="description"
       content="ATLAS Isseksi ProjectCo — Confidential capital architecture window. Controlled distribution only."
     />
-    <title>ATLAS Isseksi ProjectCo — Partner Entry Window</title>
+    <title>ATLAS Isseksi ProjectCo — Executive Deal Room</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,9 +19,10 @@
       // Apply the persisted language direction before first paint to avoid an LTR flash.
       (function () {
         try {
-          if (localStorage.getItem("atlas-lang") === "ar") {
-            document.documentElement.lang = "ar";
-            document.documentElement.dir = "rtl";
+          var lang = localStorage.getItem("atlas-isseksi-language");
+          if (lang) {
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
           }
         } catch (e) {}
       })();

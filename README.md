@@ -1,77 +1,91 @@
-# ATLAS Isseksi ProjectCo — Partner Entry Window
+# ATLAS Isseksi — Executive Deal Room
 
-Confidential interactive executive interface for the **Moroccan Financial Partner Entry Window**:
-Capital Increase into Isseksi ProjectCo | USD 3.6M | 10% Minority Entry | 3 Tranches.
+A confidential, trilingual executive transaction room for the **Moroccan
+Financial Partner Entry Window**: a capital increase into Isseksi ProjectCo —
+**USD 3.6M for up to 10%**, paid in three staged tranches.
 
-Built as a single-page institutional transaction console for investor meetings,
-executive review, screen sharing, and internal board preparation.
-**Controlled distribution only — not a public website.**
+It is built as a closed institutional deal room (sidebar navigation, a fixed
+deal-core summary, a Leaflet license evidence map, an in-room PDF viewer, and a
+screen-share Meeting Mode) — not a public website or fundraising page.
+**Controlled distribution only.**
 
 ## Run
 
 ```bash
 npm install
-npm run dev      # local development at http://localhost:5173
-npm run build    # type-check + production build to dist/
-npm run preview  # serve the production build
+npm run dev       # local dev server (http://localhost:5173)
+npm run build     # type-check + production build to dist/
+npm run preview   # serve the production build
+npm run convert:kml   # regenerate public/data/atlas-licenses.geojson from the KML
 ```
 
 ## Stack
 
-- React 18 + TypeScript + Vite
-- Tailwind CSS v4 (design tokens declared in `src/index.css` via `@theme`)
-- No chart or dashboard libraries — native components and lightweight CSS animation only
+React 18 · TypeScript · Vite · Tailwind CSS v4 · Leaflet / React-Leaflet.
+No backend, no dashboard framework.
 
 ## Structure
 
 ```
 public/
-  brand/atlas-isseksi-logo.svg   Standalone logo asset (mark + wordmark)
+  brand/atlas-isseksi-logo.svg        Standalone brand lockup asset
+  data/atlas-licenses.geojson         License portfolio (6 features incl. Isseksi)
+  licenses/isseksi-exploitation-license.pdf   Controlled exploitation licence PDF
+source-data/
+  Permis ATLAS Mining.kml             Original KML portfolio (conversion source)
+scripts/
+  convert-kml-to-geojson.js           KML → GeoJSON + appends Isseksi anchor
 src/
-  App.tsx                  Page assembly (11 sections + header/footer)
-  index.css                Design tokens, panels, buttons, copper rules, RTL typography
+  App.tsx, main.tsx, index.css
   i18n/
-    translations.ts        All UI content in EN / FR / AR as one typed object
-    LanguageContext.tsx    LanguageProvider + useTranslation hook
-  hooks/                   useInView, useCountUp (scroll-triggered animation)
+    translations.ts                   EN / AR / FR dictionaries (flat key map)
+    LanguageProvider.tsx              Context: language, direction, persistence
+    useTranslation.ts                 t(key), language, direction, setLanguage
+  data/
+    dealData.ts                       Deal summary, capital, tranches, funds, governance
+    documentsData.ts                  Document families and cards
+    licenseMetadata.ts                Map config, style colours, feature types
+  lib/scrollToSection.ts
   components/
-    Layout/                Header (sticky nav, active section), Section wrapper,
-                           LanguageSwitcher (EN / FR / AR)
-    Brand/                 AtlasMark (brand mark SVG), Logo (mark + wordmark lockup)
-    UI/                    StatCard, InfoCard, ProgressBar, MatrixTable, Timeline, Accordion
-    Sections/              Hero, TransactionSnapshot, WhyLayerExists, TranchePlan,
-                           UseOfFunds, SponsorProtection, GovernanceMonitoring,
-                           ReservedMatters, MeetingPath, DocumentCenter, FinalStatement
+    Header, SidebarNav, FixedDealSummary, SectionShell, Logo
+    HeroDealSnapshot, CapitalStructure, TrancheCapitalPath, UseOfFundsLedger,
+    PartnerProtections, GovernanceMatrix, SupportingEvidenceMap, DocumentCenter, NextStep
+    EvidenceMap, LicenseSidePanel, PdfViewerModal
 ```
 
 ## Languages
 
-The interface is trilingual: **English (default), French, Arabic**.
+EN (default, LTR), FR (LTR), AR (RTL). The switcher in the header sets
+`document.documentElement.lang` / `dir` and persists the choice in
+`localStorage` (`atlas-isseksi-language`); an inline script in `index.html`
+restores direction before first paint. All visible copy is sourced from
+`src/i18n/translations.ts` — edit a key there to change wording in one place.
+Arabic swaps to the Cairo / Tajawal font stack; financial figures (USD 3.6M,
+10%, 90%, 3.33%) are isolated LTR so they stay stable in RTL.
 
-- The switcher in the header sets `document.documentElement.lang` / `dir` and
-  persists the choice in `localStorage` (`atlas-lang`); an inline script in
-  `index.html` restores the direction before first paint.
-- Arabic activates RTL layout and swaps to Arabic-capable fonts
-  (**Cairo** for headings, **Tajawal** for body) with letter-spacing reset.
-- To edit or add copy, change the corresponding key in
-  `src/i18n/translations.ts` — every language must satisfy the
-  `TranslationSet` interface, so missing keys fail the type-check.
+## Evidence map & PDF
 
-## Design system
+The map (Leaflet) loads `/data/atlas-licenses.geojson`, fits bounds to all
+licenses, renders the five PR research permits in muted verde/stone and
+highlights **LE 353294 / Isseksi** in copper as the production anchor.
+Clicking a feature opens the side panel with its metadata; for Isseksi a
+"View Exploitation License PDF" button opens
+`/licenses/isseksi-exploitation-license.pdf` inside an in-room modal (with an
+open-in-new-tab fallback). The GeoJSON carries the GIS note: *approximate
+WGS84 conversion for controlled interactive evidence display; GIS review
+recommended* — the polygon is not a certified cadastral boundary.
 
-| Token | Value |
-|---|---|
-| Deep Earth (background) | `#1A1A0E` |
-| Verde Tech (panels) | `#2E4A3E` |
-| Atlas Stone (muted surfaces) | `#4A3728` |
-| Copper Fire (accent) | `#B87333` |
-| Forge Glow (hover/highlight) | `#D4924A` |
-| Ash White (text) | `#F0EDE8` |
+## Meeting Mode
 
-Typography: **Montserrat** (headings), **Cormorant Garamond** (sub-headings),
-**Raleway** (body), loaded from Google Fonts with system fallbacks.
+The header toggle adds a `meeting-mode` class on the app shell: key numbers
+enlarge, descriptive copy dims, and a focus strip surfaces the deal equation
+(USD 3.6M · 10% · 3 Tranches · 90% Retained · license / technology /
+operational control protected). Capital values never change.
 
-## Content source
+## Frozen transaction architecture
 
-All copy derives from `docs/ATLAS_Isseksi_ProjectCo_Capital_Architecture_Context_v1.md`.
-Edit transaction content in `src/data/transactionData.ts` — components map over the data.
+Capital Increase into Isseksi ProjectCo / SPV · USD 3.6M · up to 10% · 90%
+sponsor retained · 3 staged tranches of USD 1.2M (3.33% + 3.33% + 3.34%) ·
+quarterly monitoring · priority participation in future rounds · license,
+technology, and operational control **not transferred** · controlled Data Room
+access only.
