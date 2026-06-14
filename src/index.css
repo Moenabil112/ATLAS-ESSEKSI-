@@ -934,28 +934,30 @@ html[dir="rtl"] .hero-amount {
 .logo-lockup {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
   flex-shrink: 0;
+}
+
+.logo-mark {
+  display: block;
 }
 
 .logo-word {
   font-family: var(--font-heading);
   font-weight: 800;
-  letter-spacing: 0.18em;
-  font-size: 0.82rem;
+  letter-spacing: 0.2em;
+  font-size: 0.9rem;
+  line-height: 1.05;
   white-space: nowrap;
   color: var(--ash-white);
-}
-
-.logo-word .isseksi {
-  color: var(--forge-glow);
 }
 
 .logo-sub {
   font-family: var(--font-heading);
   font-weight: 600;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.34em;
   font-size: 0.5rem;
+  margin-top: 2px;
   color: var(--copper-fire);
   white-space: nowrap;
 }
