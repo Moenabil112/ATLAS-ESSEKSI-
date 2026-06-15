@@ -35,6 +35,8 @@ public/
     atlas-isseksi-header.svg              tightly-cropped dark lockup used in the header
   data/atlas-licenses.geojson         License portfolio (6 features incl. Isseksi)
   licenses/isseksi-exploitation-license.pdf   Controlled exploitation licence PDF
+  documents/                          Offer package — 11 partner documents, each as
+                                      a branded {id}.pdf (in-room preview) + {id}.docx (download)
 source-data/
   Permis ATLAS Mining.kml             Original KML portfolio (conversion source)
 scripts/

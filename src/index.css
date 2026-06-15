@@ -842,6 +842,27 @@ html[dir="rtl"] .hero-amount {
   color: var(--forge-glow);
 }
 
+.doc-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.doc-download {
+  color: rgba(240, 237, 232, 0.6);
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.doc-download:hover {
+  color: var(--ash-white);
+}
+
 /* ---------------- Next step timeline ---------------- */
 .timeline {
   display: grid;

@@ -7,6 +7,12 @@ export type DocumentCard = {
   family: DocumentFamilyId;
   statusKey: string;
   accessKey: string;
+  /** Branded PDF for in-room preview (served from /public/documents). */
+  pdfUrl?: string;
+  /** Original DOCX for download. */
+  docxUrl?: string;
+  /** Board-only material excluded from the partner distribution set. */
+  internal?: boolean;
 };
 
 export type DocumentFamily = {
@@ -15,111 +21,69 @@ export type DocumentFamily = {
   documents: DocumentCard[];
 };
 
+const controlled = "documents.status.controlled";
+const toPrepare = "documents.status.toPrepare";
+const access = "documents.access.controlled";
+
+/** Helper for the partner-distribution documents that have real files. */
+function filed(id: string, family: DocumentFamilyId): DocumentCard {
+  return {
+    id,
+    titleKey: `doc.${id}`,
+    purposeKey: `docPurpose.${id}`,
+    family,
+    statusKey: controlled,
+    accessKey: access,
+    pdfUrl: `/documents/${id}.pdf`,
+    docxUrl: `/documents/${id}.docx`,
+  };
+}
+
 export const documentFamilies: DocumentFamily[] = [
   {
     id: "meeting",
     titleKey: "docFamily.meeting",
     documents: [
-      {
-        id: "executiveOffer",
-        titleKey: "doc.executiveOffer",
-        purposeKey: "docPurpose.executiveOffer",
-        family: "meeting",
-        statusKey: "documents.status.toPrepare",
-        accessKey: "documents.access.controlled"
-      },
-      {
-        id: "meetingPack",
-        titleKey: "doc.meetingPack",
-        purposeKey: "docPurpose.meetingPack",
-        family: "meeting",
-        statusKey: "documents.status.toPrepare",
-        accessKey: "documents.access.controlled"
-      },
-      {
-        id: "investorQA",
-        titleKey: "doc.investorQA",
-        purposeKey: "docPurpose.investorQA",
-        family: "meeting",
-        statusKey: "documents.status.toPrepare",
-        accessKey: "documents.access.controlled"
-      }
-    ]
+      filed("executiveOffer", "meeting"),
+      filed("meetingPack", "meeting"),
+      filed("investorQA", "meeting"),
+      filed("shortOfferStatement", "meeting"),
+    ],
   },
   {
     id: "transaction",
     titleKey: "docFamily.transaction",
     documents: [
-      {
-        id: "loi",
-        titleKey: "doc.loi",
-        purposeKey: "docPurpose.loi",
-        family: "transaction",
-        statusKey: "documents.status.toPrepare",
-        accessKey: "documents.access.controlled"
-      },
-      {
-        id: "termSheet",
-        titleKey: "doc.termSheet",
-        purposeKey: "docPurpose.termSheet",
-        family: "transaction",
-        statusKey: "documents.status.toPrepare",
-        accessKey: "documents.access.controlled"
-      },
-      {
-        id: "paymentProtocol",
-        titleKey: "doc.paymentProtocol",
-        purposeKey: "docPurpose.paymentProtocol",
-        family: "transaction",
-        statusKey: "documents.status.toPrepare",
-        accessKey: "documents.access.controlled"
-      },
+      filed("loi", "transaction"),
+      filed("termSheet", "transaction"),
+      filed("useOfFundsSchedule", "transaction"),
+      filed("paymentProtocol", "transaction"),
       {
         id: "shaOutline",
         titleKey: "doc.shaOutline",
         purposeKey: "docPurpose.shaOutline",
         family: "transaction",
-        statusKey: "documents.status.toPrepare",
-        accessKey: "documents.access.controlled"
-      }
-    ]
+        statusKey: toPrepare,
+        accessKey: access,
+      },
+    ],
   },
   {
     id: "governance",
     titleKey: "docFamily.governance",
     documents: [
-      {
-        id: "quarterlyTemplate",
-        titleKey: "doc.quarterlyTemplate",
-        purposeKey: "docPurpose.quarterlyTemplate",
-        family: "governance",
-        statusKey: "documents.status.toPrepare",
-        accessKey: "documents.access.controlled"
-      },
-      {
-        id: "dataRoomIndex",
-        titleKey: "doc.dataRoomIndex",
-        purposeKey: "docPurpose.dataRoomIndex",
-        family: "governance",
-        statusKey: "documents.status.toPrepare",
-        accessKey: "documents.access.controlled"
-      },
+      filed("governanceNote", "governance"),
+      filed("quarterlyTemplate", "governance"),
+      filed("dataRoomIndex", "governance"),
       {
         id: "boardMemo",
         titleKey: "doc.boardMemo",
         purposeKey: "docPurpose.boardMemo",
         family: "governance",
-        statusKey: "documents.status.toPrepare",
-        accessKey: "documents.access.controlled"
+        statusKey: controlled,
+        accessKey: access,
+        internal: true,
       },
-      {
-        id: "governanceNote",
-        titleKey: "doc.governanceNote",
-        purposeKey: "docPurpose.governanceNote",
-        family: "governance",
-        statusKey: "documents.status.toPrepare",
-        accessKey: "documents.access.controlled"
-      }
-    ]
-  }
+    ],
+  },
 ];

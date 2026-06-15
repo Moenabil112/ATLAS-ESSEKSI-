@@ -1,9 +1,12 @@
+import { useState } from "react";
 import SectionShell from "./SectionShell";
+import PdfViewerModal from "./PdfViewerModal";
 import { useTranslation } from "../i18n/useTranslation";
 import { documentFamilies } from "../data/documentsData";
 
 export default function DocumentCenter() {
   const { t } = useTranslation();
+  const [preview, setPreview] = useState<{ url: string; title: string } | null>(null);
 
   return (
     <SectionShell
@@ -23,16 +26,45 @@ export default function DocumentCenter() {
                 </div>
                 <p className="doc-purpose">{t(doc.purposeKey)}</p>
                 <div className="doc-meta">
-                  <span className="doc-access">{t(doc.accessKey)}</span>
-                  <button type="button" className="doc-preview">
-                    {t("documents.preview")}
-                  </button>
+                  <span className="doc-access">
+                    {doc.internal ? t("documents.internalNote") : t(doc.accessKey)}
+                  </span>
+                  {doc.pdfUrl && !doc.internal && (
+                    <div className="doc-actions">
+                      <button
+                        type="button"
+                        className="doc-preview"
+                        onClick={() =>
+                          setPreview({ url: doc.pdfUrl as string, title: t(doc.titleKey) })
+                        }
+                      >
+                        {t("documents.preview")}
+                      </button>
+                      {doc.docxUrl && (
+                        <a
+                          className="doc-download"
+                          href={doc.docxUrl}
+                          download
+                          aria-label={`${t("documents.download")} — ${t(doc.titleKey)}`}
+                        >
+                          {t("documents.download")}
+                        </a>
+                      )}
+                    </div>
+                  )}
                 </div>
               </article>
             ))}
           </div>
         </div>
       ))}
+
+      <PdfViewerModal
+        isOpen={Boolean(preview)}
+        pdfUrl={preview?.url}
+        title={preview?.title}
+        onClose={() => setPreview(null)}
+      />
     </SectionShell>
   );
 }
