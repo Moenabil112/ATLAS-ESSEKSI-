@@ -934,32 +934,20 @@ html[dir="rtl"] .hero-amount {
 .logo-lockup {
   display: flex;
   align-items: center;
-  gap: 11px;
   flex-shrink: 0;
+  text-decoration: none;
 }
 
-.logo-mark {
+.logo-img {
   display: block;
+  height: 42px;
+  width: auto;
 }
 
-.logo-word {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  letter-spacing: 0.2em;
-  font-size: 0.9rem;
-  line-height: 1.05;
-  white-space: nowrap;
-  color: var(--ash-white);
-}
-
-.logo-sub {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  letter-spacing: 0.34em;
-  font-size: 0.5rem;
-  margin-top: 2px;
-  color: var(--copper-fire);
-  white-space: nowrap;
+@media (max-width: 760px) {
+  .logo-img {
+    height: 32px;
+  }
 }
 
 /* ============================================================

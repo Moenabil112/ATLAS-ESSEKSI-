@@ -28,7 +28,11 @@ No backend, no dashboard framework.
 
 ```
 public/
-  brand/atlas-isseksi-logo.svg        Standalone brand lockup asset
+  brand/                              Official ATLAS ISSEKSI logo library:
+    atlas-isseksi-horizontal-dark.svg     horizontal lockup, dark background
+    atlas-isseksi-horizontal-copper.svg   horizontal lockup, copper background
+    atlas-isseksi-stacked.svg             stacked lockup (also the favicon)
+    atlas-isseksi-header.svg              tightly-cropped dark lockup used in the header
   data/atlas-licenses.geojson         License portfolio (6 features incl. Isseksi)
   licenses/isseksi-exploitation-license.pdf   Controlled exploitation licence PDF
 source-data/
